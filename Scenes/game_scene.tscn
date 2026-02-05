@@ -32,7 +32,52 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Brick" parent="." unique_id=1548358639 instance=ExtResource("7_2fmhe")]
-position = Vector2(122, 85)
+position = Vector2(137, 100)
 
+[node name="Brick2" parent="." unique_id=2087279635 instance=ExtResource("7_2fmhe")]
+position = Vector2(248, 101)
+
+[node name="Brick3" parent="." unique_id=900210476 instance=ExtResource("7_2fmhe")]
+position = Vector2(347, 101)
+
+[node name="Brick4" parent="." unique_id=1256457198 instance=ExtResource("7_2fmhe")]
+position = Vector2(449, 101)
+
+[node name="Brick5" parent="." unique_id=1067291996 instance=ExtResource("7_2fmhe")]
+position = Vector2(542, 103)
+
+[node name="Brick6" parent="." unique_id=2092169073 instance=ExtResource("7_2fmhe")]
+position = Vector2(637, 104)
+
+[node name="Brick7" parent="." unique_id=2134222588 instance=ExtResource("7_2fmhe")]
+position = Vector2(735, 104)
+
+[node name="Brick8" parent="." unique_id=1051627253 instance=ExtResource("7_2fmhe")]
+position = Vector2(831, 102)
+
+[node name="Brick9" parent="." unique_id=1366928212 instance=ExtResource("7_2fmhe")]
+position = Vector2(925, 104)
+
+[node name="Brick10" parent="." unique_id=911362007 instance=ExtResource("7_2fmhe")]
+position = Vector2(1018, 100)
+
+[node name="Brick11" parent="." unique_id=490589673 instance=ExtResource("7_2fmhe")]
+position = Vector2(1114, 102)
+
+[node name="Brick12" parent="." unique_id=2025374165 instance=ExtResource("7_2fmhe")]
+position = Vector2(1211, 103)
+
+[connection signal="hit_brick" from="Ball" to="Brick" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick2" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick3" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick4" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick5" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick6" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick7" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick8" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick9" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick10" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick11" method="_on_ball_hit_brick"]
+[connection signal="hit_brick" from="Ball" to="Brick12" method="_on_ball_hit_brick"]
 [connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
