@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var speed: float = 200.0
-signal hit_brick(node_name: String)
+signal hit_brick(_node_name: String)
 
 var velocity = Vector2(-speed, randi_range(-200, -250))
 
@@ -15,6 +15,8 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		if collision.get_collider().name.contains("Brick"):
+			# grabs the name of the collider to ensure the proper brick gets removed
+			# then it passes the name to the signal
 			var _node_name: String = collision.get_collider().name
 			hit_brick.emit(_node_name)
 		var normal: Vector2 = collision.get_normal()

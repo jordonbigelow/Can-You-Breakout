@@ -7,10 +7,10 @@ extends Node2D
 @onready var paddle_origin = Vector2(593.0, 710.0)
 
 func _on_kill_zone_body_entered(body: Node2D) -> void:
-	print("hello world")
-	body.queue_free()
-	timer.start()
-	paddle.position = paddle_origin
+	if body.name.contains("Ball"):
+		body.queue_free()
+		timer.start()
+		paddle.position = paddle_origin
 
 func _on_timer_timeout() -> void:
 	var instance = ball.instantiate()
