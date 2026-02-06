@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b6g4fpauxura4"]
+
+[node name="HUD" type="Control" unique_id=250739775]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1549092931]
+custom_minimum_size = Vector2(1280, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=345422176]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Score: "
+
+[node name="Label2" type="Label" parent="HBoxContainer" unique_id=1909853659]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Lives: "

@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="3_fiftr"]
 [ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="5_1ixah"]
 [ext_resource type="PackedScene" uid="uid://br27v21blpwc1" path="res://Scenes/brick.tscn" id="7_2fmhe"]
+[ext_resource type="PackedScene" uid="uid://b6g4fpauxura4" path="res://Scenes/hud.tscn" id="8_7iton"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7iton"]
+rough = true
 
 [node name="GameScene" type="Node2D" unique_id=2100823579]
 script = ExtResource("1_rgj8m")
@@ -16,6 +20,7 @@ position = Vector2(593, 710)
 
 [node name="Ball" parent="." unique_id=301128935 instance=ExtResource("3_6h5vk")]
 position = Vector2(593, 683)
+physics_material_override = SubResource("PhysicsMaterial_7iton")
 
 [node name="Wall" parent="." unique_id=786990844 instance=ExtResource("2_b6fju")]
 
@@ -28,6 +33,7 @@ position = Vector2(1270, 371)
 position = Vector2(0, 731)
 
 [node name="Timer" type="Timer" parent="." unique_id=2023657180]
+process_mode = 2
 wait_time = 2.0
 one_shot = true
 
@@ -67,6 +73,22 @@ position = Vector2(1114, 102)
 [node name="Brick12" parent="." unique_id=2025374165 instance=ExtResource("7_2fmhe")]
 position = Vector2(1211, 103)
 
+[node name="UI" type="Control" parent="." unique_id=1707547852]
+custom_minimum_size = Vector2(1280, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HUD" parent="UI" unique_id=250739775 instance=ExtResource("8_7iton")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+grow_vertical = 1
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="hit_brick" from="Ball" to="Brick" method="_on_ball_hit_brick"]
 [connection signal="hit_brick" from="Ball" to="Brick2" method="_on_ball_hit_brick"]
 [connection signal="hit_brick" from="Ball" to="Brick3" method="_on_ball_hit_brick"]

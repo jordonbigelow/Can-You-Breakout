@@ -6,7 +6,7 @@ signal hit_brick(_node_name: String)
 var velocity = Vector2(-speed, randi_range(-200, -250))
 
 func _ready() -> void:
-	process_mode =  Node.PROCESS_MODE_PAUSABLE
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("shoot_ball"):

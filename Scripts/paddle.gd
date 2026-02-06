@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var speed: float = 900.0
-@export var slow_down_speed: float = 55.0 
+@export var speed: float = 700.0
+@export var slow_down_speed: float = 60.0 
 #var motion: Vector2
 
 var direction_left: float = -1.0 * speed

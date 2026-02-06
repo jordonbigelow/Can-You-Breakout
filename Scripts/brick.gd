@@ -1,8 +1,8 @@
 extends StaticBody2D
 
+func _ready() -> void:
+	add_to_group("bricks")
 
 func _on_ball_hit_brick(_node_name: String) -> void:
-	# if the parameter name matches the name of the current node
 	if name == _node_name:
-		# delete node
 		queue_free()

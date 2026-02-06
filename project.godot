@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="Atari Breakout"
+config/tags=PackedStringArray("physics_based")
+run/main_scene="uid://bhbcwjijcpfhd"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
