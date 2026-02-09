@@ -2,8 +2,8 @@ extends StaticBody2D
 
 signal destroyed(points)
 
-@export var points: int = 1
-@export var color: Color = Color.YELLOW
+var points: int = 1
+var color := Color.WHITE
 
 func _ready() -> void:
 	$ColorRect.color = color

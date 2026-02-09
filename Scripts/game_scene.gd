@@ -1,11 +1,13 @@
 extends Node2D
 
+signal game_over
+
 @export var brick_scene: PackedScene = load("res://Scenes/brick.tscn")
-@export var columns := 10
-@export var rows := 5
-@export var brick_size := Vector2(100, 20)
-@export var spacing := Vector2(8, 8)
-@export var start_pos := Vector2(100, 100)
+@export var columns := 16
+@export var rows := 8
+@export var brick_size := Vector2(74, 15)
+@export var spacing := Vector2(4, 6)
+@export var start_pos := Vector2(20, 50)
 
 @onready var ball_scene: PackedScene = preload("res://Scenes/ball.tscn")
 @onready var paddle: CharacterBody2D = $Paddle
@@ -14,7 +16,6 @@ extends Node2D
 @onready var paddle_origin = Vector2(593.0, 710.0)
 @onready var score: int = 0
 @onready var lives: int = 3
-@onready var children: Array = get_children()
 @onready var hud := $UI/HUD/HBoxContainer
 @onready var main_menu: PackedScene = load("res://Scenes/main_menu.tscn")
 @onready var brick_count = get_tree().get_nodes_in_group("bricks").size()
@@ -24,6 +25,7 @@ func _ready() -> void:
 	hud.get_child(1).text += str(lives)
 	_spawn_bricks()
 	_spawn_ball()
+	print(_get_brick_count())
 	paddle.position = paddle_origin
 
 func _on_kill_zone_body_entered(body: Node2D) -> void:
@@ -37,7 +39,7 @@ func _on_kill_zone_body_entered(body: Node2D) -> void:
 			paddle.position = paddle_origin
 		else:
 			print("Game Over Score: ", score)
-			_change_to_main_menu()
+			game_over.emit()
 
 func _on_timer_timeout() -> void:
 	get_tree().paused = false
@@ -73,22 +75,35 @@ func _spawn_bricks():
 				brick.color = Color.YELLOW
 				brick.points = 5
 			elif row == 4:
+				brick.color = Color.GREEN_YELLOW
+				brick.points = 4
+			elif row == 5:
 				brick.color = Color.LIME_GREEN
 				brick.points = 3
-			elif row == 5:
-				brick.color = Color.BLUE
+			elif row == 6: 
+				brick.color = Color.DEEP_SKY_BLUE
+				brick.points = 2
+			elif row == 7:
+				brick.color = Color.ROYAL_BLUE
 				brick.points = 1
-				
 			var x = start_pos.x + col * (brick_size.x + spacing.x)
 			var y = start_pos.y + row * (brick_size.y + spacing.y)
 			brick.position = Vector2(x, y)
-			get_child(-1).add_child(brick)
+			add_child(brick)
 
 func _on_ball_hit_brick(brick) -> void:
 	score += brick.points
 	hud.get_child(0).text = "Score: %s" % str(score)
-	print(_get_brick_count())
-	if _get_brick_count() < 1:
+	if _get_brick_count() == 0:
 		print("you've won!")
+		brick.destroy()
 		_change_to_main_menu()
 	brick.destroy()
+
+func _on_ceiling_body_entered(body: Node2D) -> void:
+	if body.name.contains("Ball"):
+		print("you win")
+		game_over.emit()
+
+func _on_game_over() -> void:
+	_change_to_main_menu()
