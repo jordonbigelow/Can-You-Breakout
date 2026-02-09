@@ -3,18 +3,15 @@
 [ext_resource type="Script" uid="uid://ba7g7n0ng58ux" path="res://Scripts/brick.gd" id="1_lvh1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvh1d"]
-size = Vector2(82, 20)
+size = Vector2(100, 30)
 
 [node name="Brick" type="StaticBody2D" unique_id=2087279635]
 script = ExtResource("1_lvh1d")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=47465668]
-offset_left = -41.0
-offset_top = -10.0
-offset_right = 41.0
-offset_bottom = 10.0
-color = Color(0.07949998, 0.53, 0.11704161, 1)
+offset_right = 100.0
+offset_bottom = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2124063692]
-visible = false
+position = Vector2(50, 15)
 shape = SubResource("RectangleShape2D_lvh1d")

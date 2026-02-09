@@ -1,8 +1,14 @@
 extends StaticBody2D
 
+signal destroyed(points)
+
+@export var points: int = 1
+@export var color: Color = Color.YELLOW
+
 func _ready() -> void:
+	$ColorRect.color = color
 	add_to_group("bricks")
 
-func _on_ball_hit_brick(_node_name: String) -> void:
-	if name == _node_name:
-		queue_free()
+func destroy():
+	destroyed.emit(points)
+	queue_free()
