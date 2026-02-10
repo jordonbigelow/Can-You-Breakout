@@ -8,6 +8,7 @@ signal game_over
 @export var brick_size := Vector2(74, 15)
 @export var spacing := Vector2(4, 6)
 @export var start_pos := Vector2(20, 50)
+@export var lives: int = 3
 
 @onready var ball_scene: PackedScene = preload("res://Scenes/ball.tscn")
 @onready var paddle: CharacterBody2D = $Paddle
@@ -15,18 +16,22 @@ signal game_over
 @onready var ball_origin = Vector2(593.0, 683.0)
 @onready var paddle_origin = Vector2(593.0, 710.0)
 @onready var score: int = 0
-@onready var lives: int = 3
 @onready var hud := $UI/HUD/HBoxContainer
-@onready var main_menu: PackedScene = load("res://Scenes/main_menu.tscn")
+@onready var main_menu_scene: PackedScene = load("res://Scenes/main_menu.tscn")
 @onready var brick_count = get_tree().get_nodes_in_group("bricks").size()
+@onready var pause_menu := $PauseMenu
 
 func _ready() -> void:
 	hud.get_child(0).text += str(score)
 	hud.get_child(1).text += str(lives)
 	_spawn_bricks()
 	_spawn_ball()
-	print(_get_brick_count())
 	paddle.position = paddle_origin
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = true
+		pause_menu.show()
 
 func _on_kill_zone_body_entered(body: Node2D) -> void:
 	if body.name.contains("Ball"):
@@ -50,7 +55,7 @@ func _get_brick_count() -> int:
 	return brick_count
 	
 func _change_to_main_menu() -> void:
-	get_tree().change_scene_to_packed(main_menu)
+	get_tree().change_scene_to_packed(main_menu_scene)
 
 func _spawn_ball():
 	var ball = ball_scene.instantiate()
@@ -106,4 +111,12 @@ func _on_ceiling_body_entered(body: Node2D) -> void:
 		game_over.emit()
 
 func _on_game_over() -> void:
+	_change_to_main_menu()
+
+func _on_resume_button_pressed() -> void:
+	get_tree().paused = false
+	pause_menu.hide()
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
 	_change_to_main_menu()

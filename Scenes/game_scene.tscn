@@ -44,7 +44,31 @@ one_shot = true
 
 [node name="Bricks" type="Node" parent="." unique_id=806865538]
 
+[node name="PauseMenu" type="CenterContainer" parent="." unique_id=1323860817]
+process_mode = 2
+visible = false
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=960626866]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer" unique_id=1608619979]
+layout_mode = 2
+text = "Pause Menu"
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=962882708]
+layout_mode = 2
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1510400244]
+layout_mode = 2
+text = "Main Menu"
+
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="body_entered" from="Ceiling" to="." method="_on_ceiling_body_entered"]
 [connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
