@@ -1,7 +1,7 @@
-##Goal
+## Goal
 - Have a working version of Atari's Super Breakout
 
-###What is currently working
+### What is currently working
 - The core gameplay loop is in place
   - Player can win by breaking out of the final red layer, and passing through
   - Player can lose by missing the ball with the paddle too many times
