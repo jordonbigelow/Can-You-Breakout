@@ -1,5 +1,8 @@
 ## Goal
 - Have a working version of Atari's Super Breakout
+- Fully finish the game with music and sound effects
+  - Made by me!
+- Find the *fun*!
 
 ### What is currently working
 - The core gameplay loop is in place
