@@ -20,6 +20,7 @@ signal game_over
 @onready var main_menu_scene: PackedScene = load("res://Scenes/main_menu.tscn")
 @onready var brick_count = get_tree().get_nodes_in_group("bricks").size()
 @onready var pause_menu := $PauseMenu
+@onready var sound_effects := $SoundEffects
 
 func _ready() -> void:
 	hud.get_child(0).text += str(score)
@@ -99,6 +100,7 @@ func _spawn_bricks():
 func _on_ball_hit_brick(brick) -> void:
 	score += brick.points
 	hud.get_child(0).text = "Score: %s" % str(score)
+	sound_effects.play(0.89)
 	if _get_brick_count() == 0:
 		print("you've won!")
 		brick.destroy()

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://2g6dw7e1fmxl" path="res://Scenes/wall.tscn" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="3_fiftr"]
 [ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="5_1ixah"]
+[ext_resource type="AudioStream" uid="uid://blyiik47y7mbm" path="res://Assets/ball_sound_fx.wav" id="7_2fmhe"]
 [ext_resource type="PackedScene" uid="uid://b6g4fpauxura4" path="res://Scenes/hud.tscn" id="8_7iton"]
 
 [node name="GameScene" type="Node2D" unique_id=2100823579]
@@ -65,6 +66,9 @@ text = "Resume"
 [node name="MainMenuButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1510400244]
 layout_mode = 2
 text = "Main Menu"
+
+[node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=1163490001]
+stream = ExtResource("7_2fmhe")
 
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="body_entered" from="Ceiling" to="." method="_on_ceiling_body_entered"]
