@@ -2,7 +2,7 @@ extends Node
 
 signal game_over
 signal ball_entered_killzone
-signal ball_broke_out
+signal ball_broke_out(score: int)
 
 @export var brick_scene: PackedScene = load("res://Scenes/brick.tscn")
 @export var columns := 16
@@ -37,7 +37,9 @@ func _ready() -> void:
 	ceiling.connect("body_entered", _on_ceiling_body_entered)
 	kill_zone.connect("body_entered", _on_kill_zone_body_entered)
 	timer.connect("timeout", _on_timer_timeout)
-	pause_menu.get_child(0).get_child(1).connect("pressed", _on_main_menu_button_pressed)
+	sound_effects.connect("finished", _on_sound_effects_finished)
+	pause_menu.get_child(0).get_child(1).connect("pressed", _on_resume_button_pressed)
+	pause_menu.get_child(0).get_child(2).connect("pressed", _on_main_menu_button_pressed)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -122,7 +124,7 @@ func _on_ball_hit_brick(brick) -> void:
 
 func _on_ceiling_body_entered(body: Node2D) -> void:
 	if body.name.contains("Ball"):
-		ball_broke_out.emit()
+		ball_broke_out.emit(score)
 
 func _on_game_over() -> void:
 	_change_to_main_menu()
