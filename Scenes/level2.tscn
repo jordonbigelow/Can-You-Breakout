@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://un1gesqc7haw"]
+
+[ext_resource type="Script" uid="uid://dhjywhy53abbl" path="res://Scripts/level.gd" id="1_lgosu"]
+[ext_resource type="PackedScene" uid="uid://b6g4fpauxura4" path="res://Scenes/hud.tscn" id="2_mhlpv"]
+[ext_resource type="PackedScene" uid="uid://c6r8cqmfh5344" path="res://Scenes/paddle.tscn" id="3_ng020"]
+[ext_resource type="PackedScene" uid="uid://2g6dw7e1fmxl" path="res://Scenes/wall.tscn" id="4_vn2uo"]
+[ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="5_mtqcm"]
+[ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="6_mmf1u"]
+[ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="7_vn460"]
+
+[node name="Level" type="Node" unique_id=144521227]
+script = ExtResource("1_lgosu")
+rows = 4
+
+[node name="UI" type="Control" parent="." unique_id=313363505]
+custom_minimum_size = Vector2(1280, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 50.0
+
+[node name="HUD" parent="UI" unique_id=250739775 instance=ExtResource("2_mhlpv")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+grow_vertical = 1
+
+[node name="Paddle" parent="." unique_id=1006824843 instance=ExtResource("3_ng020")]
+
+[node name="Wall" parent="." unique_id=786990844 instance=ExtResource("4_vn2uo")]
+
+[node name="Wall2" parent="." unique_id=2136851358 instance=ExtResource("4_vn2uo")]
+position = Vector2(1270, 371)
+
+[node name="Ceiling" parent="." unique_id=849401920 instance=ExtResource("5_mtqcm")]
+
+[node name="KillZone" parent="." unique_id=946977996 instance=ExtResource("6_mmf1u")]
+position = Vector2(0, 731)
+
+[node name="Timer" type="Timer" parent="." unique_id=600329022]
+process_mode = 2
+wait_time = 2.0
+one_shot = true
+
+[node name="Bricks" type="Node" parent="." unique_id=1620781938]
+
+[node name="PauseMenu" type="CenterContainer" parent="." unique_id=1641269512]
+process_mode = 2
+visible = false
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=1723574694]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer" unique_id=1613859187]
+layout_mode = 2
+text = "Pause Menu"
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1481839083]
+layout_mode = 2
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1707567994]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=399970556]
+stream = ExtResource("7_vn460")

@@ -1,79 +1,8 @@
 [gd_scene format=3 uid="uid://o013f0gewv7o"]
 
 [ext_resource type="Script" uid="uid://cv02c0sr5qokp" path="res://Scripts/game_scene.gd" id="1_rgj8m"]
-[ext_resource type="PackedScene" uid="uid://c6r8cqmfh5344" path="res://Scenes/paddle.tscn" id="1_x87qo"]
-[ext_resource type="PackedScene" uid="uid://2g6dw7e1fmxl" path="res://Scenes/wall.tscn" id="2_b6fju"]
-[ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="3_fiftr"]
-[ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="5_1ixah"]
-[ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="7_2fmhe"]
-[ext_resource type="PackedScene" uid="uid://b6g4fpauxura4" path="res://Scenes/hud.tscn" id="8_7iton"]
 
 [node name="GameScene" type="Node2D" unique_id=2100823579]
 script = ExtResource("1_rgj8m")
 
-[node name="UI" type="Control" parent="." unique_id=1707547852]
-custom_minimum_size = Vector2(1280, 50)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 50.0
-
-[node name="HUD" parent="UI" unique_id=250739775 instance=ExtResource("8_7iton")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-grow_vertical = 1
-
-[node name="Paddle" parent="." unique_id=1006824843 instance=ExtResource("1_x87qo")]
-
-[node name="Wall" parent="." unique_id=786990844 instance=ExtResource("2_b6fju")]
-
-[node name="Wall2" parent="." unique_id=768966840 instance=ExtResource("2_b6fju")]
-position = Vector2(1270, 371)
-
-[node name="Ceiling" parent="." unique_id=870839678 instance=ExtResource("3_fiftr")]
-
-[node name="KillZone" parent="." unique_id=946977996 instance=ExtResource("5_1ixah")]
-position = Vector2(0, 731)
-
-[node name="Timer" type="Timer" parent="." unique_id=2023657180]
-process_mode = 2
-wait_time = 2.0
-one_shot = true
-
-[node name="Bricks" type="Node" parent="." unique_id=806865538]
-
-[node name="PauseMenu" type="CenterContainer" parent="." unique_id=1323860817]
-process_mode = 2
-visible = false
-custom_minimum_size = Vector2(1280, 720)
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=960626866]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PauseMenu/VBoxContainer" unique_id=1608619979]
-layout_mode = 2
-text = "Pause Menu"
-
-[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=962882708]
-layout_mode = 2
-text = "Resume"
-
-[node name="MainMenuButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1510400244]
-layout_mode = 2
-text = "Main Menu"
-
-[node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=1163490001]
-stream = ExtResource("7_2fmhe")
-
 [connection signal="game_over" from="." to="." method="_on_game_over"]
-[connection signal="body_entered" from="Ceiling" to="." method="_on_ceiling_body_entered"]
-[connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="finished" from="SoundEffects" to="." method="_on_sound_effects_finished"]

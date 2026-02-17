@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		if collision.get_collider().name.contains("StaticBody2D") or collision.get_collider().name.contains("Brick"):
+			increase_velocity()
 			hit_brick.emit(collision.get_collider())
 		elif collision.get_collider().name.contains("Paddle"):
 			hit_paddle.emit()
@@ -25,4 +26,6 @@ func _physics_process(delta: float) -> void:
 			
 		var normal: Vector2 = collision.get_normal()
 		velocity = velocity.bounce(normal)
+		
+func increase_velocity() -> void:
 		velocity *= speed_increase
