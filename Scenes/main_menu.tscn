@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhbcwjijcpfhd"]
 
 [ext_resource type="Script" uid="uid://bqtx3oq6ka2md" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="AudioStream" uid="uid://blyiik47y7mbm" path="res://Assets/ball_sound_fx.wav" id="2_48xlc"]
 
 [node name="MainMenu" type="Control" unique_id=95052894]
 layout_mode = 3
@@ -27,5 +28,8 @@ text = "Play"
 [node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1775116263]
 layout_mode = 2
 text = "Settings"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=324642554]
+stream = ExtResource("2_48xlc")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

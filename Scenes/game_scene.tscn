@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://2g6dw7e1fmxl" path="res://Scenes/wall.tscn" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="3_fiftr"]
 [ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="5_1ixah"]
-[ext_resource type="AudioStream" uid="uid://blyiik47y7mbm" path="res://Assets/ball_sound_fx.wav" id="7_2fmhe"]
+[ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="7_2fmhe"]
 [ext_resource type="PackedScene" uid="uid://b6g4fpauxura4" path="res://Scenes/hud.tscn" id="8_7iton"]
 
 [node name="GameScene" type="Node2D" unique_id=2100823579]
@@ -76,3 +76,4 @@ stream = ExtResource("7_2fmhe")
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="finished" from="SoundEffects" to="." method="_on_sound_effects_finished"]

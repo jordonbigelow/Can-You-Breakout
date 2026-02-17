@@ -63,6 +63,8 @@ func _spawn_ball():
 	ball.position = ball_origin
 	add_child(ball)
 	ball.hit_brick.connect(_on_ball_hit_brick)
+	ball.hit_paddle.connect(_on_ball_hit_paddle)
+	ball.hit_wall.connect(_on_ball_hit_wall)
 	
 func _spawn_bricks():
 	for row in rows:
@@ -100,11 +102,11 @@ func _spawn_bricks():
 func _on_ball_hit_brick(brick) -> void:
 	score += brick.points
 	hud.get_child(0).text = "Score: %s" % str(score)
-	sound_effects.play(0.89)
 	if _get_brick_count() == 0:
 		print("you've won!")
 		brick.destroy()
 		_change_to_main_menu()
+	sound_effects.play(0.25)
 	brick.destroy()
 
 func _on_ceiling_body_entered(body: Node2D) -> void:
@@ -122,3 +124,13 @@ func _on_resume_button_pressed() -> void:
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
 	_change_to_main_menu()
+
+func _on_ball_hit_paddle() -> void:
+	sound_effects.pitch_scale *= 1.5
+	sound_effects.play(0.25)
+
+func _on_ball_hit_wall() -> void:
+	sound_effects.play(0.25)
+
+func _on_sound_effects_finished() -> void:
+	sound_effects.pitch_scale = 1.0
