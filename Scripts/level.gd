@@ -20,6 +20,8 @@ signal ball_broke_out(score: int)
 @onready var timer: Timer = $Timer
 @onready var hud := $UI/HUD/HBoxContainer
 @onready var pause_menu := $PauseMenu
+@onready var resume_button := $PauseMenu/VBoxContainer/ResumeButton
+@onready var main_menu_button := $PauseMenu/VBoxContainer/MainMenuButton
 @onready var sound_effects := $SoundEffects
 @onready var ceiling := $Ceiling
 @onready var kill_zone := $KillZone
@@ -38,8 +40,8 @@ func _ready() -> void:
 	kill_zone.connect("body_entered", _on_kill_zone_body_entered)
 	timer.connect("timeout", _on_timer_timeout)
 	sound_effects.connect("finished", _on_sound_effects_finished)
-	pause_menu.get_child(0).get_child(1).connect("pressed", _on_resume_button_pressed)
-	pause_menu.get_child(0).get_child(2).connect("pressed", _on_main_menu_button_pressed)
+	resume_button.connect("pressed", _on_resume_button_pressed)
+	main_menu_button.connect("pressed", _on_main_menu_button_pressed)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
