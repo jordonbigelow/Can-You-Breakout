@@ -13,7 +13,6 @@ script = ExtResource("1_krcey")
 offset_left = -64.0
 offset_top = -10.0
 offset_right = 64.0
-color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=340309643]
 visible = false

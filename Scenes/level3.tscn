@@ -11,6 +11,12 @@
 [node name="Level" type="Node" unique_id=144521227]
 script = ExtResource("1_qrg6c")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=67247341]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
 [node name="UI" type="Control" parent="." unique_id=313363505]
 custom_minimum_size = Vector2(1280, 50)
 layout_mode = 3
