@@ -34,6 +34,7 @@ layout_mode = 2
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1775116263]
+visible = false
 layout_mode = 2
 text = "Settings"
 
