@@ -39,9 +39,11 @@ text = "Settings"
 
 [node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=324642554]
 stream = ExtResource("2_48xlc")
+volume_db = 1.0
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=846111837]
 stream = ExtResource("3_1ehe0")
+volume_db = -2.0
 autoplay = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
