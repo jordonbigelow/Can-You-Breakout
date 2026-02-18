@@ -10,11 +10,14 @@
   - Player can lose by missing the ball with the paddle too many times
   - Player can pause the game by pressing the 'esc' key
   - Player can move the paddle back and forth
+  - Sound effects
+  - Music
 
 ### What I'm planning on implementing
-- Sound effects
-- Music
 - Settings Menu
+- Guide Screen that gives instructions and controls
 - Main Menu background art
 - In game background art
 - Custom loading screen for BitMage Studios
+- Music 'looping' so soundtracks repeat
+- Custom Icon
