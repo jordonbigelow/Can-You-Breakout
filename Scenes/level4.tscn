@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="5_egqhl"]
 [ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="6_e7bnd"]
 [ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="7_a6t2m"]
+[ext_resource type="AudioStream" uid="uid://buja50gvg4nbr" path="res://Assets/DarkCavern_PhoneHome.wav" id="8_adi6q"]
 
 [node name="Level" type="Node" unique_id=144521227]
 script = ExtResource("1_ohik4")
@@ -75,3 +76,8 @@ text = "Main Menu"
 
 [node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=399970556]
 stream = ExtResource("7_a6t2m")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=517070528]
+stream = ExtResource("8_adi6q")
+volume_db = -1.0
+autoplay = true

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="5_rqhku"]
 [ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="6_cpkqv"]
 [ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="7_d1mwp"]
+[ext_resource type="AudioStream" uid="uid://l8x443op0j6g" path="res://Assets/BreakbeatChips.wav" id="8_4iphx"]
 
 [node name="Level" type="Node" unique_id=144521227]
 script = ExtResource("1_2a60c")
@@ -76,3 +77,8 @@ text = "Main Menu"
 
 [node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=399970556]
 stream = ExtResource("7_d1mwp")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=284653500]
+stream = ExtResource("8_4iphx")
+volume_db = -5.0
+autoplay = true

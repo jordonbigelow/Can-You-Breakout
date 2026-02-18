@@ -1,7 +1,7 @@
 extends Control
 
 @onready var game_scene: PackedScene = load("res://Scenes/game_scene.tscn")
-@onready var click_sound := $AudioStreamPlayer
+@onready var click_sound := $SoundEffects
 
 func _on_play_button_pressed() -> void:
 	click_sound.play(0.89)
