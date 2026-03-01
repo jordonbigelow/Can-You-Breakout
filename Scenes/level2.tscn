@@ -78,6 +78,7 @@ text = "Main Menu"
 [node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=399970556]
 stream = ExtResource("7_vn460")
 volume_db = 2.0
+max_polyphony = 5
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=50140965]
 stream = ExtResource("8_mhlpv")

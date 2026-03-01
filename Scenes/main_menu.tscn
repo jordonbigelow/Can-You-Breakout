@@ -34,7 +34,6 @@ layout_mode = 2
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1775116263]
-visible = false
 layout_mode = 2
 text = "Settings"
 
@@ -48,3 +47,4 @@ volume_db = -2.0
 autoplay = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
