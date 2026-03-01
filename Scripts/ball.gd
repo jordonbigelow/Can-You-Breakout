@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var speed: float = 200.0
-@export var speed_increase: float = 1.01
+@export var speed_increase: float = 1.025
 signal hit_brick(brick)
 signal hit_paddle
 signal hit_wall
