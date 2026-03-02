@@ -1,20 +1,31 @@
 [gd_scene format=3 uid="uid://c01q8n8jm8w75"]
 
+[ext_resource type="Script" uid="uid://euio3j6b3gov" path="res://Scripts/settings_menu.gd" id="1_icv2g"]
+[ext_resource type="Script" uid="uid://p7idad3bihy5" path="res://Scripts/h_slider.gd" id="2_7y5a0"]
+[ext_resource type="AudioStream" uid="uid://blyiik47y7mbm" path="res://Assets/ball_sound_fx.wav" id="2_8ef0u"]
+
 [node name="SettingsMenu" type="Control" unique_id=698884192]
-custom_minimum_size = Vector2(1280, 720)
+custom_minimum_size = Vector2(640, 360)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_icv2g")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1882994328]
-custom_minimum_size = Vector2(1280, 720)
+custom_minimum_size = Vector2(640, 360)
 layout_mode = 0
-offset_right = 965.0
-offset_bottom = 609.0
-color = Color(0, 0, 0, 1)
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.6, 0.4966, 0.318, 0.78431374)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=874511787]
 layout_mode = 1
@@ -33,11 +44,64 @@ grow_vertical = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=557650851]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1469229209]
+[node name="MasterMuteButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1916551016]
 layout_mode = 2
-text = "Volume: "
+text = "Master"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=247928602]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
-value = 50.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("2_7y5a0")
+bus_name = "Master"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1970143253]
+layout_mode = 2
+
+[node name="MusicMuteButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=372784746]
+layout_mode = 2
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2" unique_id=977204169]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("2_7y5a0")
+bus_name = "Music"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=280350510]
+layout_mode = 2
+
+[node name="SoundEffectsMuteButton" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=1820830351]
+layout_mode = 2
+text = "Sound FX"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer3" unique_id=505841515]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("2_7y5a0")
+bus_name = "SoundEffects"
+
+[node name="BackButton" type="Button" parent="." unique_id=463595315]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -37.0
+offset_right = 50.0
+offset_bottom = -6.0
+grow_vertical = 0
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=342290210]
+stream = ExtResource("2_8ef0u")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MasterMuteButton" to="." method="_on_master_mute_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/MusicMuteButton" to="." method="_on_music_mute_buttom_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/SoundEffectsMuteButton" to="." method="_on_sound_effects_mute_buttom_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

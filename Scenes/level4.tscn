@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://2g6dw7e1fmxl" path="res://Scenes/wall.tscn" id="4_21ycj"]
 [ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="5_egqhl"]
 [ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="6_e7bnd"]
-[ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="7_a6t2m"]
-[ext_resource type="AudioStream" uid="uid://buja50gvg4nbr" path="res://Assets/DarkCavern_PhoneHome.wav" id="8_adi6q"]
+[ext_resource type="PackedScene" uid="uid://c01q8n8jm8w75" path="res://Scenes/settings_menu.tscn" id="7_7u67b"]
 
 [node name="Level" type="Node" unique_id=144521227]
 script = ExtResource("1_ohik4")
@@ -74,12 +73,21 @@ text = "Resume"
 layout_mode = 2
 text = "Main Menu"
 
-[node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=399970556]
-stream = ExtResource("7_a6t2m")
-volume_db = 2.0
-max_polyphony = 5
+[node name="SettingsButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1618669369]
+layout_mode = 2
+text = "Settings"
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=517070528]
-stream = ExtResource("8_adi6q")
-volume_db = -1.0
-autoplay = true
+[node name="SettingsMenu" parent="PauseMenu" unique_id=698884192 instance=ExtResource("7_7u67b")]
+visible = false
+layout_mode = 2
+
+[node name="MutedIcon" type="RichTextLabel" parent="." unique_id=1747936556]
+visible = false
+custom_minimum_size = Vector2(150, 30)
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 155.0
+offset_bottom = 45.0
+bbcode_enabled = true
+text = "[outline_size=5][outline_color=white][color=red]MUSIC MUTED![/color][/outline_color][/outline_size]"
+horizontal_alignment = 1

@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://2g6dw7e1fmxl" path="res://Scenes/wall.tscn" id="4_vn2uo"]
 [ext_resource type="PackedScene" uid="uid://ryav0txyfnm6" path="res://Scenes/ceiling.tscn" id="5_mtqcm"]
 [ext_resource type="PackedScene" uid="uid://cj3uahen145a5" path="res://Scenes/kill_zone.tscn" id="6_mmf1u"]
-[ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="7_vn460"]
-[ext_resource type="AudioStream" uid="uid://dj7ygg7y3bupv" path="res://Assets/SeeingDouble.wav" id="8_mhlpv"]
+[ext_resource type="PackedScene" uid="uid://c01q8n8jm8w75" path="res://Scenes/settings_menu.tscn" id="7_ng020"]
 
 [node name="Level" type="Node" unique_id=144521227]
+process_mode = 3
 script = ExtResource("1_lgosu")
 rows = 4
 
@@ -75,11 +75,21 @@ text = "Resume"
 layout_mode = 2
 text = "Main Menu"
 
-[node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=399970556]
-stream = ExtResource("7_vn460")
-volume_db = 2.0
-max_polyphony = 5
+[node name="SettingsButton" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1718370879]
+layout_mode = 2
+text = "Settings"
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=50140965]
-stream = ExtResource("8_mhlpv")
-autoplay = true
+[node name="SettingsMenu" parent="PauseMenu" unique_id=698884192 instance=ExtResource("7_ng020")]
+visible = false
+layout_mode = 2
+
+[node name="MutedIcon" type="RichTextLabel" parent="." unique_id=238165710]
+visible = false
+custom_minimum_size = Vector2(150, 30)
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 155.0
+offset_bottom = 45.0
+bbcode_enabled = true
+text = "[outline_size=5][outline_color=white][color=red]MUSIC MUTED![/color][/outline_color][/outline_size]"
+horizontal_alignment = 1

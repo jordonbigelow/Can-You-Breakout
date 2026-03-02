@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqtx3oq6ka2md" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="AudioStream" uid="uid://blyiik47y7mbm" path="res://Assets/ball_sound_fx.wav" id="2_48xlc"]
 [ext_resource type="AudioStream" uid="uid://34v2bufmwji" path="res://Assets/ChillMenu.wav" id="3_1ehe0"]
+[ext_resource type="PackedScene" uid="uid://c01q8n8jm8w75" path="res://Scenes/settings_menu.tscn" id="4_ce3w2"]
 
 [node name="MainMenu" type="Control" unique_id=95052894]
 layout_mode = 3
@@ -34,17 +35,24 @@ layout_mode = 2
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1775116263]
+visible = false
 layout_mode = 2
 text = "Settings"
 
 [node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=324642554]
 stream = ExtResource("2_48xlc")
 volume_db = 1.0
+bus = &"SoundEffects"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=846111837]
 stream = ExtResource("3_1ehe0")
 volume_db = -2.0
 autoplay = true
+bus = &"Music"
+
+[node name="SettingsMenu" parent="." unique_id=698884192 instance=ExtResource("4_ce3w2")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

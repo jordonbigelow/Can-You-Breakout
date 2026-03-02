@@ -1,8 +1,32 @@
 [gd_scene format=3 uid="uid://o013f0gewv7o"]
 
 [ext_resource type="Script" uid="uid://cv02c0sr5qokp" path="res://Scripts/game_scene.gd" id="1_rgj8m"]
+[ext_resource type="AudioStream" uid="uid://l5fjcejaj2sh" path="res://Assets/ball_bounce_sound_fx.wav" id="2_6h5vk"]
+[ext_resource type="AudioStream" uid="uid://l8x443op0j6g" path="res://Assets/BreakbeatChips.wav" id="3_fiftr"]
+[ext_resource type="AudioStream" uid="uid://dj7ygg7y3bupv" path="res://Assets/SeeingDouble.wav" id="4_rgj8m"]
+[ext_resource type="AudioStream" uid="uid://bseho1trt6htc" path="res://Assets/PitcherPerfectTheme.wav" id="5_2fmhe"]
+[ext_resource type="AudioStream" uid="uid://buja50gvg4nbr" path="res://Assets/DarkCavern_PhoneHome.wav" id="6_7iton"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ikfsv"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("3_fiftr")
+stream_1 = ExtResource("4_rgj8m")
+stream_2 = ExtResource("5_2fmhe")
+stream_3 = ExtResource("6_7iton")
 
 [node name="GameScene" type="Node2D" unique_id=2100823579]
 script = ExtResource("1_rgj8m")
 
-[connection signal="game_over" from="." to="." method="_on_game_over"]
+[node name="SoundEffects" type="AudioStreamPlayer" parent="." unique_id=1896905389]
+process_mode = 3
+stream = ExtResource("2_6h5vk")
+volume_db = 4.0
+max_polyphony = 5
+bus = &"SoundEffects"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=334346211]
+process_mode = 3
+stream = SubResource("AudioStreamPlaylist_ikfsv")
+autoplay = true
+bus = &"Music"

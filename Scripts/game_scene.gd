@@ -1,6 +1,7 @@
 extends Node2D
 
-signal game_over
+signal music_stopped
+signal music_started
 
 @onready var ball_scene: PackedScene = preload("res://Scenes/ball.tscn")
 @onready var main_menu_scene: PackedScene = load("res://Scenes/main_menu.tscn")
@@ -14,9 +15,15 @@ signal game_over
 @onready var level3: Node
 @onready var level4: Node
 @onready var levels: Array[Node]
-@onready var current_level 
+@onready var current_level
+
+@onready var sound_effects := $SoundEffects
+@onready var music := $Music
+
+@onready var is_muted: bool = false
 
 func _ready() -> void:
+	sound_effects.connect("finished", _on_sound_effects_finished)
 	level1 = level1_scene.instantiate()
 	level2 = level2_scene.instantiate()
 	level3 = level3_scene.instantiate()
@@ -30,43 +37,64 @@ func _ready() -> void:
 	levels.append(level4)
 	
 	for level in levels:
-		level.game_over.connect(_on_game_over)
+		level.level_game_over.connect(_on_level_game_over)
 		level.ball_entered_killzone.connect(_on_level_ball_entered_killzone)
 		level.ball_broke_out.connect(_on_level_ball_broke_out)
+		level.ball_hit_brick.connect(_on_level_ball_hit_brick)
+		level.ball_hit_wall.connect(_on_level_ball_hit_wall)
+		level.ball_hit_paddle.connect(_on_level_ball_hit_paddle)
 		
 	add_child(current_level)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("mute_sound"):
+		if !is_muted:
+			is_muted = true
+			music.stop()
+			music_stopped.emit()
+		else:
+			is_muted = false
+			music.play()
+			music_started.emit()
 
 func _change_to_main_menu() -> void:
 	get_tree().change_scene_to_packed(main_menu_scene)
 
-func _on_game_over() -> void:
-	_change_to_main_menu()
-
 func _on_level_game_over() -> void:
-	get_tree().change_scene_to_packed(main_menu_scene)
+	_change_to_main_menu.call_deferred()
 
 func _on_level_ball_entered_killzone() -> void:
 	print("you died")
 
 func _on_level_ball_broke_out(score: int) -> void:
 	prints("Score:", score)
-	_switch_level(current_level)
+	_switch_level.call_deferred()
 
-func _switch_level(level: Node) -> void:
-	if level == level1:
+func _on_level_ball_hit_brick() -> void:
+	sound_effects.play(0.25)
+
+func _switch_level() -> void:
+	if current_level == level1:
 		remove_child(current_level)
 		current_level = level2
 		add_child(current_level)
-		#get_tree().change_scene_to_packed(level2_scene)
-	elif level == level2:
+	elif current_level == level2:
 		remove_child(current_level)
 		current_level = level3
 		add_child(current_level)
-		#get_tree().change_scene_to_packed(level3_scene)
-	elif level == level3:
+	elif current_level == level3:
 		remove_child(current_level)
 		current_level = level4
 		add_child(current_level)
-		#get_tree().change_scene_to_packed(level4_scene)
-	elif level == level4:
-		get_tree().change_scene_to_packed(main_menu_scene)
+	elif current_level == level4:
+		_change_to_main_menu.call_deferred()
+
+func _on_level_ball_hit_wall() -> void:
+	sound_effects.play(0.25)
+
+func _on_level_ball_hit_paddle() -> void:
+	sound_effects.pitch_scale *= 1.2
+	sound_effects.play(0.25)
+
+func _on_sound_effects_finished() -> void:
+	sound_effects.pitch_scale = 1.0
