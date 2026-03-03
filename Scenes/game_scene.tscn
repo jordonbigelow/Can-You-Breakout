@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dj7ygg7y3bupv" path="res://Assets/SeeingDouble.wav" id="4_rgj8m"]
 [ext_resource type="AudioStream" uid="uid://bseho1trt6htc" path="res://Assets/PitcherPerfectTheme.wav" id="5_2fmhe"]
 [ext_resource type="AudioStream" uid="uid://buja50gvg4nbr" path="res://Assets/DarkCavern_PhoneHome.wav" id="6_7iton"]
+[ext_resource type="PackedScene" uid="uid://tvlo74d04vrb" path="res://Scenes/pause_menu.tscn" id="7_2fmhe"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ikfsv"]
 shuffle = true
@@ -26,7 +27,12 @@ max_polyphony = 5
 bus = &"SoundEffects"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=334346211]
-process_mode = 3
+process_mode = 1
 stream = SubResource("AudioStreamPlaylist_ikfsv")
 autoplay = true
 bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1070691607]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1466218713 instance=ExtResource("7_2fmhe")]
+visible = false

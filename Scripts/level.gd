@@ -1,6 +1,6 @@
 extends Node
 
-signal level_game_over
+signal level_game_over(score: int)
 signal ball_entered_killzone
 signal ball_broke_out(score: int)
 signal ball_hit_brick
@@ -14,19 +14,14 @@ signal ball_hit_paddle
 @export var spacing := Vector2(4, 6)
 @export var start_pos := Vector2(20, 50)
 @export var lives: int = 3
-@onready var score: int = 0
+@onready var score: int
 
 @onready var ball_scene: PackedScene = preload("res://Scenes/ball.tscn")
-@onready var main_menu_scene: PackedScene = load("res://Scenes/main_menu.tscn")
+@onready var main_menu_scene: PackedScene = preload("res://Scenes/main_menu.tscn")
 
 @onready var paddle: CharacterBody2D = $Paddle
 @onready var timer: Timer = $Timer
 @onready var hud := $UI/HUD/HBoxContainer
-@onready var pause_menu := $PauseMenu
-@onready var resume_button := $PauseMenu/VBoxContainer/ResumeButton
-@onready var main_menu_button := $PauseMenu/VBoxContainer/MainMenuButton
-@onready var settings_button := $PauseMenu/VBoxContainer/SettingsButton
-@onready var popup_settings_menu := $PauseMenu/SettingsMenu
 @onready var ceiling := $Ceiling
 @onready var kill_zone := $KillZone
 @onready var muted_icon := $MutedIcon
@@ -47,17 +42,8 @@ func _ready() -> void:
 	ceiling.connect("body_entered", _on_ceiling_body_entered)
 	kill_zone.connect("body_entered", _on_kill_zone_body_entered)
 	timer.connect("timeout", _on_timer_timeout)
-	#sound_effects.connect("finished", _on_sound_effects_finished)
-	resume_button.connect("pressed", _on_resume_button_pressed)
-	main_menu_button.connect("pressed", _on_main_menu_button_pressed)
-	settings_button.connect("pressed", _on_settings_button_pressed)
 	get_parent().connect("music_stopped", _on_music_stopped)
 	get_parent().connect("music_started", _on_music_started)
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = true
-		pause_menu.show()
 
 func _on_kill_zone_body_entered(body: Node2D) -> void:
 	if body.name.contains("Ball"):
@@ -70,8 +56,7 @@ func _on_kill_zone_body_entered(body: Node2D) -> void:
 			timer.start()
 			paddle.position = paddle_origin
 		else:
-			print("Game Over Score: ", score)
-			level_game_over.emit()
+			level_game_over.emit(score)
 
 func _on_timer_timeout() -> void:
 	get_tree().paused = false
@@ -129,7 +114,7 @@ func _on_ball_hit_brick(brick) -> void:
 	score += brick.points
 	hud.get_child(0).text = "Score: %s" % str(score)
 	if _get_brick_count() == 0:
-		print("you've won!")
+		_set_player_high_score(score)
 		brick.destroy()
 		_change_to_main_menu()
 	ball_hit_brick.emit()
@@ -138,20 +123,6 @@ func _on_ball_hit_brick(brick) -> void:
 func _on_ceiling_body_entered(body: Node2D) -> void:
 	if body.name.contains("Ball"):
 		ball_broke_out.emit(score)
-
-func _on_game_over() -> void:
-	_change_to_main_menu.call_deferred()
-
-func _on_resume_button_pressed() -> void:
-	get_tree().paused = false
-	pause_menu.hide()
-
-func _on_main_menu_button_pressed() -> void:
-	get_tree().paused = false
-	_change_to_main_menu()
-
-func _on_settings_button_pressed() -> void:
-	popup_settings_menu.visible = true
 
 func _on_ball_hit_paddle() -> void:
 	ball_hit_paddle.emit()
@@ -164,3 +135,7 @@ func _on_music_stopped() -> void:
 
 func _on_music_started() -> void:
 	$MutedIcon.hide()
+	
+func _set_player_high_score(_score: int) -> void:
+	if _score > Global.player_high_score:
+		Global.player_high_score = _score

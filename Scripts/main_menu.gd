@@ -3,13 +3,13 @@ extends Control
 @onready var game_scene: PackedScene = load("res://Scenes/game_scene.tscn")
 @onready var settings_scene: PackedScene = load("res://Scenes/settings_menu.tscn")
 @onready var click_sound := $SoundEffects
-@onready var settings_menu := $SettingsMenu
+@onready var high_score_label := $RichTextLabel
+
+func _ready() -> void:
+	high_score_label.text = "HIGH SCORE: " + str(Global.player_high_score)
 
 func _on_play_button_pressed() -> void:
 	_switch_scene(game_scene)
-
-func _on_settings_button_pressed() -> void:
-	settings_menu.visible = true
 
 func _switch_scene(scene: PackedScene) -> void:
 	click_sound.play(0.89)
