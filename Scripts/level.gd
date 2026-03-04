@@ -7,6 +7,7 @@ signal ball_hit_brick
 signal ball_hit_wall
 signal ball_hit_paddle
 
+@export var level: int
 @export var brick_scene: PackedScene = load("res://Scenes/brick.tscn")
 @export var columns := 16
 @export var rows := 8
@@ -14,6 +15,7 @@ signal ball_hit_paddle
 @export var spacing := Vector2(4, 6)
 @export var start_pos := Vector2(20, 50)
 @export var lives: int = 3
+
 @onready var score: int
 
 @onready var ball_scene: PackedScene = preload("res://Scenes/ball.tscn")
@@ -35,7 +37,8 @@ signal ball_hit_paddle
 
 func _ready() -> void:
 	hud.get_child(0).text += str(score)
-	hud.get_child(1).text += str(lives)
+	hud.get_child(1).text += str(level)
+	hud.get_child(2).text += str(lives)
 	_spawn_bricks()
 	_spawn_ball()
 	paddle.position = paddle_origin
@@ -49,7 +52,7 @@ func _on_kill_zone_body_entered(body: Node2D) -> void:
 	if body.name.contains("Ball"):
 		if lives > 1:
 			lives -= 1
-			hud.get_child(1).text = "Lives: %s" % str(lives)
+			hud.get_child(2).text = "Lives: %s" % str(lives)
 			ball_entered_killzone.emit()
 			body.queue_free()
 			get_tree().paused = true

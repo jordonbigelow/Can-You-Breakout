@@ -11,6 +11,7 @@
 [node name="Level" type="Node" unique_id=144521227]
 process_mode = 3
 script = ExtResource("1_lgosu")
+level = 2
 rows = 4
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1812433725]

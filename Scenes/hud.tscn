@@ -20,6 +20,11 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "Score: "
 
+[node name="Label3" type="Label" parent="HBoxContainer" unique_id=1856593377]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Level: "
+
 [node name="Label2" type="Label" parent="HBoxContainer" unique_id=1909853659]
 layout_mode = 2
 size_flags_horizontal = 6

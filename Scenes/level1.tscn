@@ -10,6 +10,7 @@
 
 [node name="Level" type="Node" unique_id=144521227]
 script = ExtResource("1_2a60c")
+level = 1
 rows = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=997455203]

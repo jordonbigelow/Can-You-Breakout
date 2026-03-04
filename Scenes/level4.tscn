@@ -10,6 +10,7 @@
 
 [node name="Level" type="Node" unique_id=144521227]
 script = ExtResource("1_ohik4")
+level = 4
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=67247341]
 custom_minimum_size = Vector2(1280, 720)
