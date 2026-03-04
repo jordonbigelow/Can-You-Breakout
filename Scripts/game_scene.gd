@@ -75,11 +75,7 @@ func _on_level_ball_entered_killzone() -> void:
 	print("you died")
 
 func _on_level_ball_broke_out(_score: int) -> void:
-	if current_level != level4:
-		current_score += _score
-	else:
-		current_score = _score
-		
+	current_score = _score
 	_switch_level.call_deferred()
 
 func _on_level_ball_hit_brick() -> void:
