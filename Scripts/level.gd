@@ -114,7 +114,6 @@ func _on_ball_hit_brick(brick) -> void:
 	score += brick.points
 	hud.get_child(0).text = "Score: %s" % str(score)
 	if _get_brick_count() == 0:
-		_set_player_high_score(score)
 		brick.destroy()
 		_change_to_main_menu()
 	ball_hit_brick.emit()

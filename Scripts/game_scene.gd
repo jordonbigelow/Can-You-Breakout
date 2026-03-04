@@ -2,6 +2,7 @@ extends Node2D
 
 signal music_stopped
 signal music_started
+signal player_won(score: int)
 
 @onready var ball_scene: PackedScene = preload("res://Scenes/ball.tscn")
 @onready var main_menu_scene: PackedScene = load("res://Scenes/main_menu.tscn")
@@ -18,7 +19,7 @@ signal music_started
 @onready var level4: Node
 @onready var levels: Array[Node]
 @onready var current_level
-@onready var current_score: int
+@onready var current_score: int = 0
 
 @onready var pause_menu := $CanvasLayer/PauseMenu
 
@@ -29,6 +30,7 @@ signal music_started
 
 func _ready() -> void:
 	sound_effects.connect("finished", _on_sound_effects_finished)
+	connect("player_won", _on_player_won)
 	level1 = level1_scene.instantiate()
 	level2 = level2_scene.instantiate()
 	level3 = level3_scene.instantiate()
@@ -73,7 +75,11 @@ func _on_level_ball_entered_killzone() -> void:
 	print("you died")
 
 func _on_level_ball_broke_out(_score: int) -> void:
-	current_score += _score
+	if current_level != level4:
+		current_score += _score
+	else:
+		current_score = _score
+		
 	_switch_level.call_deferred()
 
 func _on_level_ball_hit_brick() -> void:
@@ -96,7 +102,7 @@ func _switch_level() -> void:
 		current_level.score = current_score
 		add_child(current_level)
 	elif current_level == level4:
-		current_level.score = current_score
+		player_won.emit(current_score)
 		_change_to_main_menu.call_deferred()
 
 func _on_level_ball_hit_wall() -> void:
@@ -111,3 +117,7 @@ func _on_sound_effects_finished() -> void:
 
 func _change_to_main_menu() -> void:
 	get_tree().change_scene_to_packed(main_menu_scene)
+
+func _on_player_won(_score: int) -> void:
+	if _score > Global.player_high_score:
+		Global.player_high_score = _score

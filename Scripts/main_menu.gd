@@ -15,3 +15,6 @@ func _switch_scene(scene: PackedScene) -> void:
 	click_sound.play(0.89)
 	await get_tree().create_timer(0.8).timeout
 	get_tree().change_scene_to_packed(scene)
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
