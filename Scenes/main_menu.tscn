@@ -35,7 +35,6 @@ layout_mode = 2
 text = "Play"
 
 [node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1775116263]
-visible = false
 layout_mode = 2
 text = "Exit"
 
