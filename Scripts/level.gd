@@ -36,14 +36,14 @@ signal ball_hit_paddle
 @onready var muted_font_color: Color = Color.DARK_RED
 
 var row_data = [
-		[Color.ROYAL_BLUE, 10],
+		[Color.RED, 1280],
+		[Color.ORANGE_RED, 640],
+		[Color.ORANGE, 320],
+		[Color.YELLOW, 160],
+		[Color.GREEN_YELLOW, 80],
+		[Color.LIME_GREEN, 40],
 		[Color.DEEP_SKY_BLUE, 20],
-		[Color.LIME_GREEN, 30],
-		[Color.GREEN_YELLOW, 40],
-		[Color.YELLOW, 50],
-		[Color.ORANGE, 70],
-		[Color.ORANGE_RED, 100],
-		[Color.RED, 200]
+		[Color.ROYAL_BLUE, 10]
 ]
 
 func _ready() -> void:
@@ -92,39 +92,41 @@ func _spawn_ball():
 	ball.hit_wall.connect(_on_ball_hit_wall)
 	
 func _spawn_bricks():
+	var start_row = row_data.size() - rows
+	
 	for row in rows:
 		for col in columns:
 			var brick = brick_scene.instantiate()
-			brick.color = row_data[row][0]
-			brick.points = row_data[row][1]
+			brick.color = row_data[start_row + row][0]
+			brick.points = row_data[start_row+ row][1]
 	
 	#for row in rows:
 		#for col in columns:
 			#var brick = brick_scene.instantiate()
 			#if row == 0:
 				#brick.color = Color.RED
-				#brick.points = 20
+				#brick.points = 200
 			#elif row == 1:
 				#brick.color = Color.ORANGE_RED
-				#brick.points = 10
+				#brick.points = 100
 			#elif row == 2:
 				#brick.color = Color.ORANGE
-				#brick.points = 7
+				#brick.points = 70
 			#elif row == 3: 
 				#brick.color = Color.YELLOW
-				#brick.points = 5
+				#brick.points = 50
 			#elif row == 4:
 				#brick.color = Color.GREEN_YELLOW
-				#brick.points = 4
+				#brick.points = 40
 			#elif row == 5:
 				#brick.color = Color.LIME_GREEN
-				#brick.points = 3
+				#brick.points = 30
 			#elif row == 6: 
 				#brick.color = Color.DEEP_SKY_BLUE
-				#brick.points = 2
+				#brick.points = 20
 			#elif row == 7:
 				#brick.color = Color.ROYAL_BLUE
-				#brick.points = 1
+				#brick.points = 10
 			var x = start_pos.x + col * (brick_size.x + spacing.x)
 			var y = start_pos.y + row * (brick_size.y + spacing.y)
 			brick.position = Vector2(x, y)

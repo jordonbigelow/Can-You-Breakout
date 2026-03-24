@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c01q8n8jm8w75" path="res://Scenes/settings_menu.tscn" id="7_ng020"]
 
 [node name="Level" type="Node" unique_id=144521227]
-process_mode = 3
 script = ExtResource("1_lgosu")
 level = 2
 rows = 4
