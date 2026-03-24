@@ -99,34 +99,6 @@ func _spawn_bricks():
 			var brick = brick_scene.instantiate()
 			brick.color = row_data[start_row + row][0]
 			brick.points = row_data[start_row+ row][1]
-	
-	#for row in rows:
-		#for col in columns:
-			#var brick = brick_scene.instantiate()
-			#if row == 0:
-				#brick.color = Color.RED
-				#brick.points = 200
-			#elif row == 1:
-				#brick.color = Color.ORANGE_RED
-				#brick.points = 100
-			#elif row == 2:
-				#brick.color = Color.ORANGE
-				#brick.points = 70
-			#elif row == 3: 
-				#brick.color = Color.YELLOW
-				#brick.points = 50
-			#elif row == 4:
-				#brick.color = Color.GREEN_YELLOW
-				#brick.points = 40
-			#elif row == 5:
-				#brick.color = Color.LIME_GREEN
-				#brick.points = 30
-			#elif row == 6: 
-				#brick.color = Color.DEEP_SKY_BLUE
-				#brick.points = 20
-			#elif row == 7:
-				#brick.color = Color.ROYAL_BLUE
-				#brick.points = 10
 			var x = start_pos.x + col * (brick_size.x + spacing.x)
 			var y = start_pos.y + row * (brick_size.y + spacing.y)
 			brick.position = Vector2(x, y)
