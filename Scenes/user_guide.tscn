@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://o4hbp7yf24ng"]
+
+[ext_resource type="Script" uid="uid://b0xkcm42pvcsp" path="res://Scripts/user_guide.gd" id="1_dan4k"]
+
+[node name="UserGuide" type="Control" unique_id=2004201130]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dan4k")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=580724896]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1842518962]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=229556073]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=1734286998]
+layout_mode = 2
+
+[node name="ControlsLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer" unique_id=1918937726]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Controls"
+
+[node name="ControlsContentLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer" unique_id=2052482814]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Move Left: A, Left D-Pad, Left Joystick Left
+Move Right: D, Right D-Pad, Left Joystick Right
+
+Stop Music: M
+Pause: ESC"
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/HBoxContainer" unique_id=1318653264]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=1081807100]
+layout_mode = 2
+
+[node name="GuideLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer2" unique_id=477747912]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Game Rules"
+
+[node name="GuideContentLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer2" unique_id=735601582]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "The objective of this game is to breakout of the top of each level. If you breakout of the last level, you win and your score will be totalled and saved if it's a new high score.
+
+You have 3 lives per level. If the ball hits your side, you lose a life. That's all there is to it! 
+
+Now... can you breakout?
+"
+autowrap_mode = 3
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer2" unique_id=1656317037]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Brick Color Point Allocation"
+
+[node name="ScoreContentLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer2" unique_id=54958230]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Blue = 1
+Light Blue = 2
+Green = 3
+Green Yellow = 4
+Yellow = 5 
+Orange = 7
+Orange Red = 10
+Red = 20"
+
+[node name="BackButton" type="Button" parent="." unique_id=865480735]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -41.0
+offset_right = 55.0
+offset_bottom = -10.0
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

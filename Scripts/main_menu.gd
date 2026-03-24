@@ -2,6 +2,7 @@ extends Control
 
 @onready var game_scene: PackedScene = load("res://Scenes/game_scene.tscn")
 @onready var settings_scene: PackedScene = load("res://Scenes/settings_menu.tscn")
+@onready var guide_scene: PackedScene = load("res://Scenes/user_guide.tscn")
 @onready var click_sound := $SoundEffects
 @onready var high_score_label := $RichTextLabel
 
@@ -18,3 +19,6 @@ func _switch_scene(scene: PackedScene) -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_guide_button_pressed() -> void:
+	_switch_scene(guide_scene)

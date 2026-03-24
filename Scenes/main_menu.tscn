@@ -34,6 +34,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Play"
 
+[node name="GuideButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=160637321]
+layout_mode = 2
+text = "Guide"
+
 [node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1775116263]
 layout_mode = 2
 text = "Exit"
@@ -65,4 +69,5 @@ autowrap_mode = 0
 script = ExtResource("4_ce3w2")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GuideButton" to="." method="_on_guide_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
