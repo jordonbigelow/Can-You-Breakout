@@ -94,14 +94,14 @@ layout_mode = 2
 [node name="ScoreContentLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer2" unique_id=54958230]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
-text = "Blue = 1
-Light Blue = 2
-Green = 3
-Green Yellow = 4
-Yellow = 5 
-Orange = 7
-Orange Red = 10
-Red = 20"
+text = "Blue = 10
+Light Blue = 20
+Green = 40
+Green Yellow = 80
+Yellow = 160 
+Orange = 320
+Orange Red = 640
+Red = 1280"
 
 [node name="BackButton" type="Button" parent="." unique_id=865480735]
 layout_mode = 1
